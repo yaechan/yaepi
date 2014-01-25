@@ -1,0 +1,2 @@
+module Edinet::CodeHelper
+end

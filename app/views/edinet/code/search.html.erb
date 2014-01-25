@@ -1,0 +1,52 @@
+<%# -*- coding: utf-8 -*- %>
+
+<% @codes.each do |code| %>
+<table class="edinetCode">
+	<tbody>
+		<tr>
+			<th>edinetCode</th>
+			<td><%= code.edinetCode %></td>
+		</tr>
+		<tr>
+			<th>listing</th>
+			<td><%= code.listing ? "上場" : code.listing == false ? "非上場" : "---" %></td>
+		</tr>
+		<tr>
+			<th>consolidation</th>
+			<td><%= code.consolidation ? "有" : code.consolidation == false ? "無" : "---" %></td>
+		</tr>
+		<tr>
+			<th>capital</th>
+			<td><%= code.capital.to_s.reverse.gsub(/(\d{3})(?=\d)/,'\1,').reverse %>百万円</td>
+		</tr>
+		<tr>
+			<th>settlement</th>
+			<td><%= code.settlementMonth ? code.settlementMonth.to_s + "月" + code.settlementDay.to_s + "日" : "---" %></td>
+		</tr>
+		<tr>
+			<th>nameJa</th>
+			<td><%= code.nameJa || "---" %></td>
+		</tr>
+		<tr>
+			<th>nameEn</th>
+			<td><%= code.nameEn || "---" %></td>
+		</tr>
+		<tr>
+			<th>nameYomi</th>
+			<td><%= code.nameYomi || "---" %></td>
+		</tr>
+		<tr>
+			<th>address</th>
+			<td><%= code.address || "---" %></td>
+		</tr>
+		<tr>
+			<th>industry</th>
+			<td><%= code.industry || "---" %></td>
+		</tr>
+		<tr>
+			<th>securityCode</th>
+			<td><%= code.securityCode || "---" %></td>
+		</tr>
+	</tbody>
+</table>
+<% end %>
