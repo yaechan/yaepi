@@ -1,6 +1,7 @@
 Yaepi::Application.routes.draw do
   root "top#index"
   resources :top, :only => [:index]
+  resources :edinet, :only => [:index]
 
   namespace :edinet do
     resources :code do

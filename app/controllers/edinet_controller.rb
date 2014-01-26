@@ -1,0 +1,2 @@
+class EdinetController < ApplicationController
+end

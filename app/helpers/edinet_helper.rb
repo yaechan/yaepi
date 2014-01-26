@@ -1,0 +1,2 @@
+module EdinetHelper
+end
