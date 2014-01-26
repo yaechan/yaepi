@@ -112,7 +112,7 @@ module EdinetCode
 
     hash_code = {}
     CSV.foreach(file_name_csv, row_sep: "\r\n", encoding: "SJIS:UTF-8") do |row|
-      next unless row[0] =~ /\A\w\w\w\w\w\w\Z/
+      next unless row[0] =~ /\A\w\w\w\w\w\w\Z/ && !row[1].include?("個人")
       hash_code[row[0].to_s] = {
         :listing => parse_listing(row[2]),
         :consolidation => parse_consolidation(row[3]),

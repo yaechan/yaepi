@@ -6,7 +6,6 @@ class Edinet::CodeController < ApplicationController
   def index
     params = validate_params(search_params)
     @codes = parse_params(params)
-    puts search_params.length
     respond_to do |format|
       if search_params.length > 0
         format.html { render :action => "search.html.erb" }
