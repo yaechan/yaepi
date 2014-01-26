@@ -1,11 +1,14 @@
 Yaepi::Application.routes.draw do
-    namespace :edinet do
-      resources :code do
-        collection do
-          get 'search'
-        end
+  root "top#index"
+  resources :top, :only => [:index]
+
+  namespace :edinet do
+    resources :code do
+      collection do
+        get 'search'
       end
     end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
