@@ -5,7 +5,7 @@
 	<tbody>
 		<tr>
 			<th>edinetCode</th>
-			<td><%= code.edinetCode %></td>
+			<td><%= code.edinet_code %></td>
 		</tr>
 		<tr>
 			<th>listing</th>
@@ -21,19 +21,19 @@
 		</tr>
 		<tr>
 			<th>settlement</th>
-			<td><%= code.settlementMonth ? code.settlementMonth.to_s + "月" + code.settlementDay.to_s + "日" : "---" %></td>
+			<td><%= code.settlement_month ? code.settlement_month.to_s + "月" + code.settlement_day.to_s + "日" : "---" %></td>
 		</tr>
 		<tr>
 			<th>nameJa</th>
-			<td><%= code.nameJa || "---" %></td>
+			<td><%= code.name_ja || "---" %></td>
 		</tr>
 		<tr>
 			<th>nameEn</th>
-			<td><%= code.nameEn || "---" %></td>
+			<td><%= code.name_en || "---" %></td>
 		</tr>
 		<tr>
 			<th>nameYomi</th>
-			<td><%= code.nameYomi || "---" %></td>
+			<td><%= code.name_yomi || "---" %></td>
 		</tr>
 		<tr>
 			<th>address</th>
@@ -45,7 +45,7 @@
 		</tr>
 		<tr>
 			<th>securityCode</th>
-			<td><%= code.securityCode || "---" %></td>
+			<td><%= code.security_code || "---" %></td>
 		</tr>
 	</tbody>
 </table>

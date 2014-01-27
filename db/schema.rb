@@ -14,18 +14,18 @@
 ActiveRecord::Schema.define(version: 20140125163009) do
 
   create_table "edinet_codes", force: true do |t|
-    t.string   "edinetCode"
+    t.string   "edinet_code"
     t.boolean  "listing"
     t.boolean  "consolidation"
     t.integer  "capital"
-    t.integer  "settlementMonth"
-    t.integer  "settlementDay"
-    t.string   "nameJa"
-    t.string   "nameEn"
-    t.string   "nameYomi"
+    t.integer  "settlement_month"
+    t.integer  "settlement_day"
+    t.string   "name_ja"
+    t.string   "name_en"
+    t.string   "name_yomi"
     t.string   "address"
     t.string   "industry"
-    t.string   "securityCode"
+    t.string   "security_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

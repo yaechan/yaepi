@@ -16,7 +16,7 @@ module EdinetCode
 
   def parse_params(params)
     @codes = Edinet::Code.all
-    @codes = @codes.where("edinetCode = ?", params[:edinetCode]) if params[:edinetCode]
+    @codes = @codes.where("edinet_code = ?", params[:edinetCode]) if params[:edinetCode]
     @codes = @codes.where("listing = ?", params[:listing]) if params[:listing] &&
                                                               params[:listing] != "null"
     @codes = @codes.where("listing is NULL") if params[:listing] &&
@@ -33,22 +33,22 @@ module EdinetCode
                                                                         params[:capitalFollowing] != "null"
     @codes = @codes.where("capital is NULL") if params[:capitalFollowing] &&
                                                 params[:capitalFollowing] == "null"
-    @codes = @codes.where("settlementMonth = ?", params[:settlementMonth]) if params[:settlementMonth] &&
+    @codes = @codes.where("settlement_month = ?", params[:settlementMonth]) if params[:settlementMonth] &&
                                                                           params[:settlementMonth] != "null"
-    @codes = @codes.where("settlementMonth is NULL") if params[:settlementMonth] &&
+    @codes = @codes.where("settlement_month is NULL") if params[:settlementMonth] &&
                                                       params[:settlementMonth] == "null"
-    @codes = @codes.where("settlementDay = ?", params[:settlementDay]) if params[:settlementDay] &&
+    @codes = @codes.where("settlement_day = ?", params[:settlementDay]) if params[:settlementDay] &&
                                                                       params[:settlementDay] != "null"
-    @codes = @codes.where("settlementDay is NULL") if params[:settlementDay] &&
+    @codes = @codes.where("settlement_day is NULL") if params[:settlementDay] &&
                                                     params[:settlementDay] == "null"
-    @codes = @codes.where("nameJa LIKE ?", "%#{params[:nameJa]}%") if params[:nameJa]
-    @codes = @codes.where("nameEn LIKE ?", "%#{params[:nameEn]}%") if params[:nameEn]
-    @codes = @codes.where("nameYomi LIKE ?", "%#{params[:nameYomi]}%") if params[:nameYomi]
+    @codes = @codes.where("name_ja LIKE ?", "%#{params[:nameJa]}%") if params[:nameJa]
+    @codes = @codes.where("name_en LIKE ?", "%#{params[:nameEn]}%") if params[:nameEn]
+    @codes = @codes.where("name_yomi LIKE ?", "%#{params[:nameYomi]}%") if params[:nameYomi]
     @codes = @codes.where("address LIKE ?", "%#{params[:address]}%") if params[:address]
     @codes = @codes.where("industry LIKE ?", "%#{params[:industry]}%") if params[:industry]
-    @codes = @codes.where("securityCode = ?", params[:securityCode]) if params[:securityCode] &&
+    @codes = @codes.where("security_code = ?", params[:securityCode]) if params[:securityCode] &&
                                                                         params[:securityCode] != "null"
-    @codes = @codes.where("securityCode is NULL") if params[:securityCode] &&
+    @codes = @codes.where("security_code is NULL") if params[:securityCode] &&
                                                      params[:securityCode] == "null"
     return @codes
   end
@@ -117,33 +117,33 @@ module EdinetCode
         :listing => parse_listing(row[2]),
         :consolidation => parse_consolidation(row[3]),
         :capital => row[4].blank? ? nil : row[4],
-        :settlementMonth => parse_settlement_date(row[5])[0],
-        :settlementDay => parse_settlement_date(row[5])[1],
-        :nameJa => row[6].blank? ? nil : row[6],
-        :nameEn => row[7].blank? ? nil : row[7],
-        :nameYomi => row[8].blank? ? nil : row[8],
+        :settlement_month => parse_settlement_date(row[5])[0],
+        :settlement_day => parse_settlement_date(row[5])[1],
+        :name_ja => row[6].blank? ? nil : row[6],
+        :name_en => row[7].blank? ? nil : row[7],
+        :name_yomi => row[8].blank? ? nil : row[8],
         :address => row[9].blank? ? nil : row[9],
         :industry => row[10].blank? ? nil : row[10],
-        :securityCode => row[11].blank? ? nil : row[11].to_s[0, 4]
+        :security_code => row[11].blank? ? nil : row[11].to_s[0, 4]
       }
     end
 
     Edinet::Code.transaction do
       Edinet::Code.delete_all
-      hash_code.each do |edinetCode, campany|
+      hash_code.each do |edinet_code, campany|
         Edinet::Code.create(
-          :edinetCode => edinetCode,
+          :edinet_code => edinet_code,
           :listing => campany[:listing],
           :consolidation => campany[:consolidation],
           :capital => campany[:capital],
-          :settlementMonth => campany[:settlementMonth],
-          :settlementDay => campany[:settlementDay],
-          :nameJa => campany[:nameJa],
-          :nameEn => campany[:nameEn],
-          :nameYomi => campany[:nameYomi],
+          :settlement_month => campany[:settlement_month],
+          :settlement_day => campany[:settlement_day],
+          :name_ja => campany[:name_ja],
+          :name_en => campany[:name_en],
+          :name_yomi => campany[:name_yomi],
           :address => campany[:address],
           :industry => campany[:industry],
-          :securityCode => campany[:securityCode]
+          :security_code => campany[:security_code]
         )
       end
     end
