@@ -2,7 +2,7 @@ class Edinet::CodeController < ApplicationController
   require 'module_edinet_code'
   include EdinetCode
 
-  #/api/edinet/code(.html/.xml/.json)?query
+  #/edinet/code(.html/.xml/.json)?query
   def index
     params = validate_params(search_params)
     @codes = parse_params(params)
@@ -17,7 +17,7 @@ class Edinet::CodeController < ApplicationController
     end
   end
 
-  #/api/edinet/code/xxxxxx(.html/.xml/.json)
+  #/edinet/code/xxxxxx(.html/.xml/.json)
   def show
     @code = Edinet::Code.find(params[:id])
     respond_to do |format|
